@@ -80,7 +80,10 @@ pub fn init(allocator: std.mem.Allocator, routes_module: type) !App {
 pub fn deinit(self: *App) void {
     self.arena.deinit();
     self.allocator.destroy(self.arena);
-    if (self.logger.test_logger.file) |file| file.close();
+    if (self.logger.test_logger.file) |file| {
+        file.sync() catch @panic("failed to sync log file");
+        file.close();
+    }
 }
 
 const RequestOptions = struct {
