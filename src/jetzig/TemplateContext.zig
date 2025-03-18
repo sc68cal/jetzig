@@ -23,3 +23,9 @@ pub fn authenticityFormElement(self: TemplateContext) !?[]const u8 {
         , .{ config.get([]const u8, "authenticity_token_name"), token });
     } else null;
 }
+
+pub fn loggedInUser(self: TemplateContext) !?[]const u8 {
+    return if (self.request) |request| {
+        return try request.loggedInUser();
+    } else null;
+}

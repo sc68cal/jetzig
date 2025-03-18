@@ -518,6 +518,11 @@ pub fn session(self: *Request) !*jetzig.http.Session {
     return local_session;
 }
 
+pub fn loggedInUser(self: *Request) ![]const u8 {
+    var local_session = try self.session();
+    return local_session.getT(.string, "_jetzig_user_id").?;
+}
+
 /// Return the anti-CSRF token cookie value. If no cookie exist, create it.
 pub fn authenticityToken(self: *Request) ![]const u8 {
     var local_session = try self.session();
