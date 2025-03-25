@@ -293,11 +293,11 @@ pub fn expectJob(job_name: []const u8, job_params: anytype, response: TestRespon
     return error.JetzigExpectJobError;
 }
 
+pub const fileUpload = struct { description: []const u8, upload: File };
 pub const File = struct { filename: []const u8, content: []const u8 };
 pub fn file(comptime filename: []const u8, comptime content: []const u8) File {
     return .{ .filename = filename, .content = content };
 }
-
 fn logFailure(comptime message: []const u8, args: anytype) void {
     std.log.err("[jetzig.testing] " ++ message, args);
 }

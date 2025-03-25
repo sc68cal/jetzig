@@ -44,3 +44,23 @@ test "post" {
     try response.expectBodyContains("example.txt");
     try response.expectBodyContains("example file content");
 }
+
+test "post multiple files" {
+    var app = try jetzig.testing.app(std.testing.allocator, @import("routes"));
+    defer app.deinit();
+
+    const response = try app.request(.POST, "/file_upload", .{
+        .body = app.multipart([2]jetzig.testing.fileUpload{ .{
+            .description = "example description",
+            .upload = jetzig.testing.file("example.txt", "example file content"),
+        }, .{
+            .description = "example description #2",
+            .upload = jetzig.testing.file("example_2.txt", "example file number two"),
+        } }),
+    });
+
+    try response.expectStatus(.created);
+    try response.expectBodyContains("example description");
+    try response.expectBodyContains("example.txt");
+    try response.expectBodyContains("example file content");
+}

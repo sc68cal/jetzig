@@ -271,6 +271,9 @@ pub fn multipart(self: *App, comptime args: anytype) []const u8 {
                 tryWrite(writer, header ++ "\r\n\r\n");
                 tryWrite(writer, @field(args, field.name).content);
             },
+            []jetzig.testing.fileUpload => {
+                @compileLog("Here");
+            },
             // Assume a string, let Zig fail for us if not.
             else => {
                 tryWrite(
