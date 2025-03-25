@@ -4,8 +4,8 @@
     .fingerprint = 0x93ad8bfa2d209022,
     .dependencies = .{
         .jetquery = .{
-            .url = "https://github.com/sc68cal/jetquery/archive/40803eba510d15b8920231bfba84fb45a0b25bcf.tar.gz",
-            .hash = "jetquery-0.0.0-TNf3zn1hBgCHs11EcmRi_aLgMqzaF5b8e5zwI2ozBvjo",
+            .url = "https://github.com/sc68cal/jetquery/archive/598b491a0840737b5180a8e4fa883770f5181c3c.tar.gz",
+            .hash = "jetquery-0.0.0-TNf3zuZjBgCICm0_eO_XLvzDDl4F4G7Bv05AaUqxuoKr",
         },
         .jetkv = .{
             .url = "https://github.com/jetzig-framework/jetkv/archive/9d754e552e7569239a900ed9e0f313a0554ed2d3.tar.gz",
